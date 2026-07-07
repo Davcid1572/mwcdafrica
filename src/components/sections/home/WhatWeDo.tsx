@@ -74,7 +74,7 @@ export function WhatWeDo() {
         <Link
           href="/work"
           style={{ gridArea: "explore" }}
-          className="group bg-accent text-white rounded-2xl p-5 sm:p-6 flex flex-col justify-end min-h-[100px] sm:min-h-[150px] hover:bg-accent-light transition-colors"
+          className="group bg-accent-light text-white rounded-2xl p-5 sm:p-6 flex flex-col justify-end min-h-[100px] sm:min-h-[150px] hover:bg-accent-light transition-colors"
         >
           <span className="font-mono text-[11px] text-white/70 mb-2">
             Explore
