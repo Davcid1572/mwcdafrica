@@ -1,5 +1,6 @@
 "use client";
-import { CtaBand } from "@/layout/CtaBand";
+import { Hero } from "@/components/sections/home/Hero";
+import { MissionMarquee } from "@/components/sections/home/MissionMarquee";
 import Footer from "@/layout/Footer";
 import Header from "@/layout/Header";
 
@@ -7,7 +8,8 @@ const page = () => {
   return (
     <div>
       <Header />
-      <CtaBand />
+      <Hero />
+      <MissionMarquee />
       <Footer />
     </div>
   );

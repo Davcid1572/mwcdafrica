@@ -5,6 +5,12 @@ import "./globals.css";
 
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
+export const metadata = {
+  title: "MWCD AFRICA",
+  description:
+    "MWCD AFRICA is a Mental Wellbeing & Community Development foundation advancing care, innovation, and dignity — meeting people exactly where they are.",
+};
+
 const spectral = Spectral({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
