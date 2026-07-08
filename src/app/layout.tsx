@@ -1,15 +1,9 @@
-import { Spectral, Hanken_Grotesk, Figtree } from "next/font/google";
+import type { Metadata } from "next";
+import { Spectral, Hanken_Grotesk } from "next/font/google";
 import { Providers } from "./providers";
-import { cn } from "@/lib/utils";
+import Header from "@/layout/Header";
+import Footer from "@/layout/Footer";
 import "./globals.css";
-
-const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
-
-export const metadata = {
-  title: "MWCD AFRICA",
-  description:
-    "MWCD AFRICA is a Mental Wellbeing & Community Development foundation advancing care, innovation, and dignity — meeting people exactly where they are.",
-};
 
 const spectral = Spectral({
   subsets: ["latin"],
@@ -24,6 +18,15 @@ const hanken = Hanken_Grotesk({
   variable: "--font-hanken",
 });
 
+export const metadata: Metadata = {
+  title: {
+    default: "MWCDAFRICA | Empowering Minds, Strengthening Communities",
+    template: "%s | MWCDAFRICA",
+  },
+  description:
+    "A Mental Wellbeing & Community Development foundation advancing care, innovation, and dignity across Africa.",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -32,16 +35,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        spectral.variable,
-        hanken.variable,
-        "font-sans",
-        figtree.variable,
-      )}
+      className={`${spectral.variable} ${hanken.variable}`}
       suppressHydrationWarning
     >
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

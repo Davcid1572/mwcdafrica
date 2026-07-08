@@ -1,22 +1,21 @@
-"use client";
+import { FlagshipInitiatives } from "@/components/sections/home/FlagShipInitiatives";
 import { Hero } from "@/components/sections/home/Hero";
+import { Impact } from "@/components/sections/home/Impact";
 import { MissionMarquee } from "@/components/sections/home/MissionMarquee";
 import { WhatWeDo } from "@/components/sections/home/WhatWeDo";
 import { WhyWeExist } from "@/components/sections/home/WhyWeExist";
-import Footer from "@/layout/Footer";
-import Header from "@/layout/Header";
+import { Join } from "@/components/sections/home/Join";
 
-const page = () => {
+export default function HomePage() {
   return (
-    <div>
-      <Header />
+    <>
       <Hero />
       <MissionMarquee />
       <WhyWeExist />
       <WhatWeDo />
-      <Footer />
-    </div>
+      <FlagshipInitiatives />
+      <Impact />
+      <Join />
+    </>
   );
-};
-
-export default page;
+}

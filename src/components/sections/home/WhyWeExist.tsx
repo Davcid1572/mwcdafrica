@@ -18,8 +18,8 @@ export function WhyWeExist() {
           className="hidden sm:block absolute right-0 top-2 w-16 h-16 rotate-12 rounded-2xl border border-accent/30"
         />
 
-        <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent mb-5">
-          (02) Why we exist
+        <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-5">
+          Why we exist
         </p>
 
         <h2

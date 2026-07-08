@@ -15,7 +15,7 @@ export function WhatWeDo() {
     >
       <div className="flex flex-wrap items-end justify-between gap-6 mb-10 sm:mb-14">
         <div>
-          <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent mb-4">
+          <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-4">
             What we do
           </p>
           <h2

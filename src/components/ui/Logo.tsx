@@ -14,7 +14,7 @@ export function Logo() {
         <span className="font-serif font-bold text-[19px] text-foreground">
           MWCD<span className="text-primary">AFRICA</span>
         </span>
-        <span className="text-[9.5px] tracking-[2.4px] uppercase text-muted-foreground mt-1">
+        <span className="text-[9.5px] tracking-[2.4px] uppercase text-muted-foreground mt-1 hidden md:inline">
           Mental Wellbeing &amp; Community Development
         </span>
       </span>
