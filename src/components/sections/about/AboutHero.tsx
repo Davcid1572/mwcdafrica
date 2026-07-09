@@ -23,7 +23,7 @@ export function AboutHero() {
         className="font-serif font-medium text-[40px] sm:text-[68px] lg:text-[88px] leading-[0.98] tracking-[-0.03em] max-w-[15ch] text-balance"
       >
         An institution built around{" "}
-        <span className="italic text-primary">dignity.</span>
+        <span className="italic text-primary-hover">dignity.</span>
       </h1>
 
       <p className="text-[16px] sm:text-[18px] leading-[1.6] text-muted-foreground max-w-[520px] mt-9 sm:mt-14">
@@ -32,7 +32,7 @@ export function AboutHero() {
         Connect Africa and MICA.
       </p>
 
-      <div className="relative mt-9 sm:mt-14 rounded-[20px] overflow-hidden aspect-[16/7] min-h-[220px] shadow-[0_30px_70px_-40px_rgba(34,29,23,0.5)]">
+      <div className="relative mt-9 sm:mt-14 overflow-hidden rounded-[20px] aspect-[16/9] sm:aspect-[16/7] sm:min-h-[220px] shadow-[0_30px_70px_-40px_rgba(34,29,23,0.5)]">
         <Image
           src="/images/about/founder-team.jpg"
           alt="Founder and team members meeting together"
