@@ -59,7 +59,7 @@ export function PageBanner({
           / {breadcrumbLabel}
         </nav> */}
 
-        <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent mb-4">
+        <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-4">
           {eyebrow}
         </p>
 
