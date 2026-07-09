@@ -50,8 +50,8 @@ export default function Header() {
                 aria-current={isActive ? "page" : undefined}
                 className={`text-[14.5px] font-medium pb-1 border-b-2 transition-colors ${
                   isActive
-                    ? "border-accent text-foreground"
-                    : "border-transparent text-foreground/80 hover:border-accent hover:text-foreground"
+                    ? "border-accent-light text-foreground"
+                    : "border-transparent text-foreground/80 hover:border-accent-light hover:text-foreground"
                 }`}
               >
                 {item.label}

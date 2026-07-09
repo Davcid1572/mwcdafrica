@@ -29,7 +29,7 @@ export function Events() {
       className="max-w-[1240px] mx-auto px-5 sm:px-10 py-14 sm:py-24"
     >
       <div className="mb-8 sm:mb-11">
-        <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent mb-3">
+        <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-3">
           Upcoming events
         </p>
         <h2
