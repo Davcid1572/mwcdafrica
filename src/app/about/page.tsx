@@ -4,6 +4,7 @@ import { OurStory } from "@/components/sections/about/OurStory";
 import { VisionMission } from "@/components/sections/about/VisionMission";
 import { CoreValues } from "@/components/sections/about/CoreValues";
 import { Governance } from "@/components/sections/about/Governance";
+import { Join } from "@/components/sections/home/Join";
 
 export const metadata: Metadata = {
   title: "About",
@@ -19,6 +20,7 @@ export default function AboutPage() {
       <VisionMission />
       <CoreValues />
       <Governance />
+      <Join />
     </>
   );
 }

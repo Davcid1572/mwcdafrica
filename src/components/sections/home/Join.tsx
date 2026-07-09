@@ -5,7 +5,7 @@ export function Join() {
   return (
     <section
       aria-labelledby="join-us-heading"
-      className="relative bg-[#ECE2D2] overflow-hidden py-6 sm:py-10"
+      className="relative bg-background overflow-hidden py-6 sm:py-10"
     >
       <div className="relative z-10 max-w-[720px] mx-auto text-center px-5 py-16 sm:py-20">
         <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-5">
