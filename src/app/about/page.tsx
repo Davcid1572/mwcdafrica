@@ -3,6 +3,7 @@ import { AboutHero } from "@/components/sections/about/AboutHero";
 import { OurStory } from "@/components/sections/about/OurStory";
 import { VisionMission } from "@/components/sections/about/VisionMission";
 import { CoreValues } from "@/components/sections/about/CoreValues";
+import { Governance } from "@/components/sections/about/Governance";
 
 export const metadata: Metadata = {
   title: "About",
@@ -17,6 +18,7 @@ export default function AboutPage() {
       <OurStory />
       <VisionMission />
       <CoreValues />
+      <Governance />
     </>
   );
 }
