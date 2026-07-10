@@ -20,7 +20,7 @@ export function PartnershipOpportunities() {
     <section aria-label="Ways to partner" className="bg-muted">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-10 py-14 sm:py-20 flex flex-wrap gap-8 sm:gap-12">
         <div className="flex-1 min-w-[280px]">
-          <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent mb-4.5">
+          <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-4.5">
             Ways to partner
           </p>
           <div className="flex flex-col gap-3.5">
