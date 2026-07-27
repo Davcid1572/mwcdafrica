@@ -1,155 +1,143 @@
 # Changes made to this project
 
-A running note of what was fixed/added on top of the original build, so it's
-clear what changed and why. Structure and conventions (data files in
-`lib/data`, function components, Tailwind utility classes inline) were kept
-as-is throughout.
+A running note of what was fixed or added on top of the original build, so it
+stays clear what changed and why.
 
-## Bugs fixed
+The project style was kept intact throughout: data files live in `lib/data`,
+components are plain function components, and styling stays in Tailwind utility
+classes unless the project already had a better local pattern.
 
-- **Build reliability**: fonts were loaded via `next/font/google`, which
-  fetches from Google at build time and fails hard on networks/CI that block
-  that request (this is almost certainly the "fails on some accounts" issue).
-  Switched to self-hosted `@fontsource/spectral` and `@fontsource/hanken-grotesk`
-  packages, imported once in `app/layout.tsx`. No more network dependency at
-  build time.
-- **`--primary` color token** was set to near-black (`oklch(0.205 0 0)`)
-  instead of the brand green, while `--primary-hover` was correctly green.
-  Primary buttons (Donate, form submits) were rendering off-brand and only
-  flashing green on hover.
-- **`--font-sans: var(--font-sans)`** in `globals.css` was self-referential
-  (should have pointed at the Hanken Grotesk variable), which silently broke
-  the site's default body font.
-- **Dark mode** used the default shadcn grayscale palette instead of a
-  brand-derived one. Rebuilt off the actual ink/green palette.
-- **Logo mark** (`public/brand/logo-mark.png`) had ~70% transparent padding
-  baked into the file, so at header size it rendered tiny/"zoomed out".
-  Replaced with an inline SVG mark (also used in the footer and the mission
-  marquee, which had the same issue).
-- **Favicon** was the default Next.js icon. Generated a real favicon/app icon
-  set from the brand mark.
-- **CTA band** (`Join.tsx`) had regressed into a plain, uncarded section with
-  the wrong heading copy. Rebuilt to match the source design: dark green
-  rounded card, decorative circles, "Get involved" kicker, three-button row.
-- **Mission marquee** was hidden below the `md` breakpoint entirely, and its
-  small logo badge used the same background color as the section behind it
-  (invisible). Now shows on all breakpoints with a visible mark.
-- Several **hover-color bugs** where a button's base and hover state resolved
-  to the same color (no visible feedback): `CreativeConnectBlock` "Learn
-  more", `WhatWeDo` explore card, `MicaBlock`.
-- A handful of **dead code**: a commented-out breadcrumb `<Link>` in
-  `CCHero`/`WorkHero`, an empty label `<span>` in `AboutHero`, an unused
-  `MissionMarquee` import and a large commented-out block in the home
-  `Impact` section.
-- **`PhoneMockup`** had its screenshot layer commented out, so it only ever
-  rendered an empty frame.
-- Two different sets of hardcoded impact numbers on the home page and
-  `/impact` (they disagreed with each other). Centralized into
-  `lib/data/impact.ts` so both stay in sync and it's a single place to edit.
-  This does not yet track live usage automatically, that needs a real
-  backend and is a bigger follow-up (noted below).
+## Latest
 
-## Missing/broken images
+- **Blog article 404 fixed**: the project is on Next `16.2.10`, where App
+  Router `params` are async. The `/blog/[slug]` page was reading
+  `params.slug` synchronously, so the post lookup could miss and fall into the
+  branded 404 page. `generateMetadata` and the blog article page now await
+  `params` before reading the slug.
+- Removed an unused `use` import from the main blog page.
+- Verified with `npm.cmd run build`. The build now lists all four article
+  pages as generated:
+  `/blog/why-community-is-underrated`,
+  `/blog/building-local-leadership`,
+  `/blog/art-and-grief`, and
+  `/blog/designing-mica-low-bandwidth`.
+- `npm.cmd run lint` still fails on two older React Compiler lint issues in
+  `ThemeToggle.tsx` and `Header.tsx`; those are unrelated to the blog 404.
 
-Most of `/images/work/*`, `/images/about/*`, `/images/impact/*`,
-`/images/resources/*`, `/images/creative-connect/*` and `/images/mica/*`
-were referenced in code but did not exist on disk (404s). Wired in the
-provided photography where a matching asset existed; where nothing exists
-yet (contact map, blog covers, two Creative Connect gallery tiles, MICA
-onboarding screen assets beyond what's reused from the magician cards) a
-`PlaceholderPhoto` component renders a labeled placeholder instead of a
-broken image, so it's easy to grep for what's still needed.
+## Build and foundations
 
-## Added
+- **Build reliability**: fonts were loaded through `next/font/google`, which
+  fetches from Google at build time and can fail on networks or CI environments
+  that block that request. Switched to self-hosted
+  `@fontsource/spectral` and `@fontsource/hanken-grotesk`, imported once in
+  `app/layout.tsx`, so the build no longer depends on that external request.
+- **Paystack donations** are wired in and functional. `DonationForm` opens
+  Paystack's inline popup on the page, `src/app/api/paystack/verify/route.ts`
+  confirms transactions server-side, and `/donate/success` shows a receipt.
+  Add `NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY` and `PAYSTACK_SECRET_KEY` to
+  `.env.local` (see `.env.example`). Currency defaults to NGN through
+  `NEXT_PUBLIC_PAYSTACK_CURRENCY`.
+- Impact numbers on the home page and `/impact` were hardcoded in two places
+  and disagreed with each other. They now come from `lib/data/impact.ts`, so
+  there is one place to edit them.
 
-- `components/ui/Tap.tsx` -- scale-on-press + haptic vibration wrapper,
-  applied to the header nav, mobile drawer, footer socials, hero and CTA
-  buttons, all form submit buttons, program/resource/blog list items.
-- `lib/haptics.ts` -- thin wrapper around `navigator.vibrate`.
-- Floating, animated theme toggle (`ThemeToggle.tsx`) fixed to the corner of
-  the viewport with an animated sun/moon icon swap, instead of a static
-  emoji button in the header row.
-- `components/ui/Photo.tsx` -- standard content image with an in/out-of-focus
-  hover treatment (starts very slightly blurred and desaturated, settles on
-  hover/focus).
-- `components/ui/MagicianCards.tsx` -- fans a set of MICA screenshots out
-  from a shared anchor point, each straightening and lifting to the front on
-  hover/tap. Used on the home page (4 screens) and Work → Digital Innovation
-  (3 screens).
-- `app/not-found.tsx` -- branded 404 page.
+## Brand and visual polish
 
-## Still open (flagged, not done in this pass)
+- **Primary color token fixed**: `--primary` was near-black while
+  `--primary-hover` was the correct brand green. Primary buttons now render
+  in the expected brand color.
+- **Font token fixed**: `--font-sans: var(--font-sans)` in `globals.css` was
+  self-referential, which silently broke the default body font. It now points
+  at the Hanken Grotesk variable.
+- **Dark mode** was still using the default shadcn grayscale palette. It was
+  rebuilt around the actual ink and green brand palette.
+- **Logo mark** had heavy transparent padding baked into
+  `public/brand/logo-mark.png`, so it looked tiny at header size. Replaced it
+  with an inline SVG mark, also used in the footer and mission marquee.
+- **Favicon/app icons** were replaced with a real set generated from the brand
+  mark.
+- Several button hover states had no visible feedback because base and hover
+  colors resolved to the same value. Fixed the Creative Connect "Learn more"
+  button, the What We Do explore card, and the MICA block.
+- Removed the blur/desaturate hover effect on photos and replaced it with a
+  plain gentle zoom.
 
-- **Payment gateway** (Paystack primary, Flutterwave/Stripe as alternates),
-  styled to feel in-house rather than a redirect to a third-party page.
+## Components and interactions
+
+- Added `components/ui/Tap.tsx`, a scale-on-press wrapper with a short haptic
+  pulse on devices that support vibration. It is used across nav links, drawer
+  items, footer socials, hero CTAs, form submit buttons, and program/resource/
+  blog list items.
+- Added `lib/haptics.ts`, a small wrapper around `navigator.vibrate`.
+- Added a floating animated theme toggle with sun/moon icon swapping, instead
+  of the old static emoji-style header button.
+- Added `components/ui/Photo.tsx` as the shared content image wrapper.
+- Added `components/ui/MagicianCards.tsx`, used for the MICA screen fan on the
+  home page and the Work page.
+- `PhoneMockup` had its screenshot layer commented out, so it rendered as an
+  empty frame. The screenshot layer is back.
+- The phone frame asset was fully opaque rather than a transparent bezel, so
+  it now renders behind the screenshot instead of covering it.
+- `MagicianCards` now computes its height from the rendered card aspect ratio
+  and card count, removing the dead space that made the fan sit too low.
+
+## Pages and content
+
+- **Blog**: every post now leads to a real article page at `/blog/[slug]`,
+  with written copy for all four posts instead of placeholder links.
+- **404 page**: added `app/not-found.tsx`, a branded fallback page.
+- **CTA band** on the home page was rebuilt to match the source design:
+  dark green rounded card, decorative circles, "Get involved" kicker, and a
+  three-button row.
+- **Mission marquee** now appears on all breakpoints. Its small logo badge also
+  has enough contrast to be visible.
+- Home page initiatives were reworked: the old two-card `FlagshipInitiatives`
+  block was replaced with `CreativeConnectShowcase`, matching the layout style
+  of `MicaShowcase`.
+- MICA page hero now shows the larger four-screen card fan instead of one
+  static image.
+- Creative Connect page "Join" actions now link to `creativeconnect.africa`
+  instead of a local placeholder form.
+- `PageBanner` breadcrumb navigation (`Home / X`) was restored for interior
+  pages.
+- Home, Work, and About hero heading sizes were brought into better alignment.
+- Several wide `min-w-[300px]` and `min-w-[320px]` flex children were reduced
+  across contact, donate, work, MICA, and initiatives sections to avoid
+  horizontal scrolling on narrow phones.
+- **Impact reports** now show a single "2026 Annual Impact Report / Coming
+  soon" state. Since the organization incorporated in 2026, older reports
+  would have implied documents that do not exist.
+- **Partners page** now shows one honest "newly incorporated, open to
+  partnership" panel with a CTA to `/contact`, instead of an empty partner
+  grid that implied existing partners.
+- **Initiatives page image focus**: both Creative Connect and MICA blocks now
+  pass `objectPosition="30% 50%"` so the images crop from a better focal point.
+
+## Images and assets
+
+- Most of the referenced images under `/images/work`, `/images/about`,
+  `/images/impact`, `/images/resources`, `/images/creative-connect`, and
+  `/images/mica` did not exist on disk and were causing image 404s. Matching
+  provided photography was wired in where available.
+- Where images were not available yet, `PlaceholderPhoto` was introduced so the
+  page showed a labeled placeholder instead of a broken image.
+- Later pass: every remaining `PlaceholderPhoto` was replaced with a real
+  `Photo`, with matching folders created for the required paths.
+- Fixed image assignments where the home page Creative Empowerment tile reused
+  the Work page photo, and where Creative Connect hero/home teaser images were
+  pointing at the wrong asset.
+
+## Cleanup
+
+- Removed stale commented-out code: breadcrumb links in `CCHero` and
+  `WorkHero`, an empty label span in `AboutHero`, an unused `MissionMarquee`
+  import, and a large old block in the home `Impact` section.
+
+## Still open
+
 - **Live impact counter**: auto-incrementing counters need a real persistence
-  layer (a KV store or database), which is the same piece of infrastructure
-  the payment gateway needs for recording donations, so these are best done
-  together in the next pass.
-
-## Round 2
-
-- **Paystack is now wired in and functional.** `DonationForm` opens
-  Paystack's inline popup (an overlay on the page, not a redirect), a
-  server-side `src/app/api/paystack/verify/route.ts` confirms the
-  transaction with the secret key, and `/donate/success` shows a real
-  receipt. Add `NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY` and `PAYSTACK_SECRET_KEY`
-  to `.env.local` (see `.env.example`) and it works. Currency defaults to
-  NGN via `NEXT_PUBLIC_PAYSTACK_CURRENCY`.
-- Impact counter left as-is, no further changes.
-- Removed the blur/desaturate hover effect on photos (`.photo-focus`),
-  replaced with a plain gentle zoom (`.photo-zoom`), no blur.
-- **`PhoneMockup`**: `phone-frame.png` turned out to be a fully opaque
-  silhouette (not a transparent bezel), so the frame is now rendered behind
-  the screenshot instead of on top of it, where it was blacking everything
-  out.
-- **`MagicianCards`**: the container was a fixed near-square box regardless
-  of how many cards it held or how wide they were rendered, leaving dead
-  space above the fan and making it sit visibly lower than text next to it.
-  Height is now computed from the actual card aspect ratio and count.
-- Reworked the home page's initiative section: removed the old two-card
-  `FlagshipInitiatives` block, added `CreativeConnectShowcase` (bold image
-  left, heading/copy/CTA right) to match `MicaShowcase`'s layout.
-- Fixed image assignments: home page's Creative Empowerment tile was
-  reusing the Work page's photo instead of its own; Creative Connect's hero
-  and home teaser now use the correct provided photo.
-- MICA page hero now shows the four-screen card fan (enlarged) instead of a
-  single static image.
-- Creative Connect page's "Join" actions now link out to
-  creativeconnect.africa (external) instead of a local fake form.
-- Restored the breadcrumb nav in `PageBanner` (`Home / X`), it was
-  commented out, affecting every interior page that uses it.
-- Bumped the home, Work, and About hero headings up to match each other,
-  the home hero previously capped smaller than the interior page heroes,
-  which read as "zoomed out" next to everything else.
-- Reduced several `min-w-[300px]`/`min-w-[320px]` flex-child widths down
-  (mostly ~250-260px) across contact, donate, work, mica, and initiatives
-  sections, they were wide enough to force horizontal scroll on the
-  narrowest phones (~320px viewports).
-
-## Round 3
-
-- **Initiatives page image focus**: `Photo` already supported an
-  `objectPosition` prop, just wasn't being passed. Both the Creative
-  Connect and MICA blocks on `/initiatives` now use `objectPosition="30%
-  50%"` (horizontal 30% = slightly left of center, vertical 50% = centered
-  top-to-bottom). To adjust further: `0%` is fully left, `50%` is centered,
-  `100%` is fully right, same scale for the vertical value. Both live in
-  `src/components/sections/initiatives/CreativeConnectBlock.tsx` and
-  `MicaBlock.tsx`.
-- **Impact reports**: the org incorporated in 2026, so a 2024/2025 report
-  didn't make sense. Replaced with a single "2026 Annual Impact Report /
-  Coming soon" state (not a dead link) plus a short line explaining why,
-  instead of pretending a PDF exists.
-- **Blog**: every post now leads to a real article page
-  (`/blog/[slug]`), with genuine written copy for all four posts (the
-  featured one plus three others), not just a title and a broken link.
-- **Partners page**: since there are no partners yet, the 8-box empty grid
-  is now a single "we're newly incorporated, open to partnership" panel
-  with a CTA into `/contact`, instead of implying partners that don't
-  exist.
-- **Missing images**: replaced every remaining `PlaceholderPhoto` with a
-  real `Photo` pointed at the exact path it needs, and created the
-  matching folders. See the message below this file for the full list of
-  filenames to drop in.
-
+  layer, like a KV store or database. The visual numbers are centralized now,
+  but they are not live yet.
+- **Lint cleanup**: `ThemeToggle.tsx` and `Header.tsx` still trigger
+  `react-hooks/set-state-in-effect` under the current React Compiler lint
+  rules.
