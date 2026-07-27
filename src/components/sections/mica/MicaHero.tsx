@@ -1,6 +1,13 @@
 import Link from "next/link";
-import { PhoneMockup } from "@/components/ui/PhoneMockup";
+import { MagicianCards } from "@/components/ui/MagicianCards";
 import { WaitlistForm } from "@/components/sections/mica/WaitlistForm";
+
+const heroCards = [
+  { src: "/images/home/mica-card-1.png", alt: "MICA app splash screen" },
+  { src: "/images/home/mica-card-2.png", alt: "MICA home screen with mood layers" },
+  { src: "/images/home/mica-card-3.png", alt: "MICA journaling screen" },
+  { src: "/images/home/mica-card-4.png", alt: "MICA resources screen" },
+];
 
 export function MicaHero() {
   return (
@@ -23,7 +30,7 @@ export function MicaHero() {
       </svg>
 
       <div className="relative max-w-[1240px] mx-auto px-5 sm:px-10 pt-9 sm:pt-14 pb-12 sm:pb-20 flex flex-wrap gap-8 sm:gap-16 items-center">
-        <div className="flex-1 min-w-[300px]">
+        <div className="flex-1 min-w-[260px]">
           <nav
             aria-label="Breadcrumb"
             className="font-mono text-[12px] text-[#F7F2EA]/55 mb-5.5"
@@ -59,14 +66,10 @@ export function MicaHero() {
           <WaitlistForm variant="inline" />
         </div>
 
-        <div className="flex-0 basis-[300px] min-w-[240px] flex justify-center">
-          <div className="w-[230px]">
-            <PhoneMockup
-              src="/images/mica/hero-screen.jpg"
-              alt="MICA app home and mood tracking screen"
-            />
-          </div>
-        </div>
+        <MagicianCards
+          cards={heroCards}
+          className="flex-1 min-w-[260px] basis-[440px] max-w-[520px]"
+        />
       </div>
     </section>
   );

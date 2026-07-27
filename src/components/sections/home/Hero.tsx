@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Tap } from "@/components/ui/Tap";
 
 export function Hero() {
   return (
     <section>
-      <div className="relative overflow-hidden min-h-[420px] lg:min-h-[520px]">
+      <div className="relative overflow-hidden min-h-[480px] lg:min-h-[620px] xl:min-h-[680px]">
         {/* Background Image */}
         <Image
           src="/images/home/hero-hands.png"
@@ -25,7 +26,7 @@ export function Hero() {
             </p>
 
             {/* Heading */}
-            <h2 className="font-serif text-white text-[42px] sm:text-[56px] lg:text-[72px] leading-[0.95] tracking-[-2px]">
+            <h2 className="font-serif text-white text-[44px] sm:text-[64px] lg:text-[88px] xl:text-[104px] leading-[0.95] tracking-[-2px]">
               Empowering minds.
               <br />
               Strengthening
@@ -46,9 +47,11 @@ export function Hero() {
 
               {/* Buttons */}
               <div className="flex flex-wrap gap-3 lg:flex-nowrap">
-                <Link
-                  href="/about"
-                  className="
+                <Tap>
+                  <Link
+                    href="/about"
+                    className="
+    inline-block
     rounded-full
     bg-primary
     px-7
@@ -62,16 +65,19 @@ export function Hero() {
     hover:-translate-y-0.5
     hover:shadow-lg
   "
-                >
-                  Explore our work &rarr;
-                </Link>
+                  >
+                    Explore our work &rarr;
+                  </Link>
+                </Tap>
 
-                <Link
-                  href="/donate"
-                  className="rounded-full border border-white/30 bg-white/10 px-7 py-3.5 text-white whitespace-nowrap backdrop-blur-sm transition hover:bg-white/20"
-                >
-                  Support the mission
-                </Link>
+                <Tap>
+                  <Link
+                    href="/donate"
+                    className="inline-block rounded-full border border-white/30 bg-white/10 px-7 py-3.5 text-white whitespace-nowrap backdrop-blur-sm transition hover:bg-white/20"
+                  >
+                    Support the mission
+                  </Link>
+                </Tap>
               </div>
             </div>
           </div>

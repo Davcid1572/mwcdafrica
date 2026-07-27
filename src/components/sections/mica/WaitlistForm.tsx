@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { haptic } from "@/lib/haptics";
 
 type WaitlistFormProps = {
   variant?: "inline" | "centered";
@@ -11,6 +12,7 @@ export function WaitlistForm({ variant = "inline" }: WaitlistFormProps) {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    haptic(12);
     setStatus("submitting");
     setTimeout(function () {
       setStatus("sent");
@@ -52,7 +54,12 @@ export function WaitlistForm({ variant = "inline" }: WaitlistFormProps) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="bg-primary hover:bg-primary-hover text-primary-foreground font-semibold text-[15px] px-6.5 py-3.5 rounded-full transition-colors disabled:opacity-60"
+        className={
+          "font-semibold text-[15px] px-6.5 py-3.5 rounded-full transition-all active:scale-[0.97] disabled:opacity-60 " +
+          (variant === "centered"
+            ? "bg-primary hover:bg-primary-hover text-primary-foreground"
+            : "bg-accent-light hover:bg-accent-light/85 text-white")
+        }
       >
         {status === "submitting" ? "Joining..." : "Join waitlist"}
       </button>

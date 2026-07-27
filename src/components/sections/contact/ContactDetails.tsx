@@ -1,4 +1,5 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
+import { Tap } from "@/components/ui/Tap";
 
 const socials = [
   { label: "Instagram", short: "IG", href: "#" },
@@ -8,7 +9,7 @@ const socials = [
 
 export function ContactDetails() {
   return (
-    <div className="flex-1 min-w-[280px] flex flex-col gap-6">
+    <div className="flex-1 min-w-[250px] flex flex-col gap-6">
       <div>
         <p className="font-mono text-[11px] tracking-[1.5px] uppercase text-accent mb-2">
           Email
@@ -46,27 +47,25 @@ export function ContactDetails() {
         <div className="flex gap-2.5">
           {socials.map(function (s) {
             return (
-              <a
-                key={s.label}
-                href={s.href}
-                aria-label={s.label}
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-[12px] font-semibold hover:bg-accent hover:text-white hover:border-accent transition-colors"
-              >
-                {s.short}
-              </a>
+              <Tap key={s.label} hapticPattern={8}>
+                <a
+                  href={s.href}
+                  aria-label={s.label}
+                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-[12px] font-semibold hover:bg-accent hover:text-white hover:border-accent active:scale-95 transition-all"
+                >
+                  {s.short}
+                </a>
+              </Tap>
             );
           })}
         </div>
       </div>
 
-      <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
-        <Image
-          src="/images/contact/office-map.jpg"
-          alt="Map showing MWCDAFRICA office location"
-          fill
-          className="object-cover object-center"
-        />
-      </div>
+      <Photo
+        src="/images/contact/office-map.jpg"
+        alt="Map showing MWCDAFRICA office location"
+        className="aspect-[16/9] rounded-2xl"
+      />
     </div>
   );
 }

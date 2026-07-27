@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+import { Photo } from "@/components/ui/Photo";
+import { Tap } from "@/components/ui/Tap";
 
 const features = [
   { label: "Programs", value: "Workshops, residencies, skills labs" },
@@ -12,18 +13,14 @@ export function CreativeConnectBlock() {
   return (
     <section aria-labelledby="cc-block-heading" className="bg-muted">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-10 py-14 sm:py-24 flex flex-wrap gap-8 sm:gap-14">
-        <div className="flex-1 min-w-[280px] relative">
-          <div className="relative aspect-[4/4.2] rounded-[20px] overflow-hidden">
-            <Image
-              src="/images/initiatives/creative-connect-preview.png"
-              alt="Creative Connect Africa community"
-              fill
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
+        <Photo
+          src="/images/initiatives/creative-connect-preview.png"
+          alt="Creative Connect Africa community"
+          className="flex-1 min-w-[250px] aspect-[4/4.2] rounded-[20px]"
+          objectPosition="12% 50%"
+        />
 
-        <div className="flex-1 min-w-[300px]">
+        <div className="flex-1 min-w-[260px]">
           <div className="flex items-center gap-2.5 mb-3.5">
             <h2
               id="cc-block-heading"
@@ -53,12 +50,14 @@ export function CreativeConnectBlock() {
               );
             })}
           </div>
-          <Link
-            href="/initiatives/creative-connect"
-            className="inline-block bg-primary-hover hover:bg-primary-hover text-primary-foreground font-semibold text-[14.5px] px-6 py-3.5 rounded-full transition-colors"
-          >
-            Learn more &rarr;
-          </Link>
+          <Tap>
+            <Link
+              href="/initiatives/creative-connect"
+              className="inline-block bg-primary hover:bg-primary-hover text-primary-foreground font-semibold text-[14.5px] px-6 py-3.5 rounded-full transition-colors"
+            >
+              Learn more &rarr;
+            </Link>
+          </Tap>
         </div>
       </div>
     </section>

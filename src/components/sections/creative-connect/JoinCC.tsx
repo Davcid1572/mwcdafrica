@@ -1,18 +1,6 @@
-"use client";
-
-import { useState } from "react";
+import { Tap } from "@/components/ui/Tap";
 
 export function JoinCC() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "sent">("idle");
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("submitting");
-    setTimeout(function () {
-      setStatus("sent");
-    }, 600);
-  }
-
   return (
     <section
       id="join"
@@ -44,40 +32,21 @@ export function JoinCC() {
           >
             Join the Creative Connect community
           </h2>
-          <p className="text-[16px] leading-[1.6] text-primary-foreground/78 mb-6">
+          <p className="text-[16px] leading-[1.6] text-primary-foreground/78 mb-7">
             Creatives, mentors and changemakers welcome. Be part of something
-            growing.
+            growing, on creativeconnect.africa.
           </p>
 
-          {status === "sent" ? (
-            <p role="status" className="font-medium">
-              You&apos;re on the list, welcome to the community.
-            </p>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-wrap gap-2.5 max-w-[440px] mx-auto"
+          <Tap>
+            <a
+              href="https://creativeconnect.africa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white text-primary-hover font-semibold text-[15px] px-7 py-3.5 rounded-full"
             >
-              <label htmlFor="cc-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="cc-email"
-                name="email"
-                type="email"
-                required
-                placeholder="Enter your email"
-                className="flex-1 min-w-[180px] px-[18px] py-3.5 rounded-full border border-white/30 bg-white/10 text-white placeholder:text-white/60 text-[15px] outline-none focus:ring-2 focus:ring-white/40"
-              />
-              <button
-                type="submit"
-                disabled={status === "submitting"}
-                className="bg-white text-primary-hover font-semibold text-[15px] px-6.5 py-3.5 rounded-full disabled:opacity-60"
-              >
-                {status === "submitting" ? "Joining..." : "Join now"}
-              </button>
-            </form>
-          )}
+              Join now &rarr;
+            </a>
+          </Tap>
         </div>
       </div>
     </section>

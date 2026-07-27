@@ -1,5 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
+import { Photo } from "@/components/ui/Photo";
+import { Tap } from "@/components/ui/Tap";
 
 const features = [
   { label: "Features", value: "Mood, journaling, resources, AI" },
@@ -15,7 +16,7 @@ export function MicaBlock() {
       className="bg-[#221D17] text-[#F7F2EA]"
     >
       <div className="max-w-[1240px] mx-auto px-5 sm:px-10 py-14 sm:py-24 flex flex-wrap gap-8 sm:gap-14">
-        <div className="flex-1 min-w-[300px] order-1">
+        <div className="flex-1 min-w-[260px] order-1">
           <div className="flex items-center gap-2.5 mb-3.5">
             <h2
               id="mica-block-heading"
@@ -46,24 +47,22 @@ export function MicaBlock() {
               );
             })}
           </div>
-          <Link
-            href="/initiatives/mica"
-            className="inline-block bg-accent-light hover:bg-accent-light/60 text-white font-semibold text-[14.5px] px-6 py-3.5 rounded-full transition-colors"
-          >
-            Learn more &rarr;
-          </Link>
+          <Tap>
+            <Link
+              href="/initiatives/mica"
+              className="inline-block bg-accent-light hover:bg-accent-light/80 text-white font-semibold text-[14.5px] px-6 py-3.5 rounded-full transition-colors"
+            >
+              Learn more &rarr;
+            </Link>
+          </Tap>
         </div>
 
-        <div className="flex-1 min-w-[280px] order-2 relative">
-          <div className="relative aspect-[4/4.2] rounded-[20px] overflow-hidden">
-            <Image
-              src="/images/initiatives/mica-preview.png"
-              alt="MICA app interface preview"
-              fill
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
+        <Photo
+          src="/images/initiatives/mica-preview.png"
+          alt="MICA app interface preview"
+          className="flex-1 min-w-[250px] order-2 aspect-[4/4.2] rounded-[20px]"
+          objectPosition="40% 50%"
+        />
       </div>
     </section>
   );

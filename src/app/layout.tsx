@@ -1,22 +1,21 @@
 import type { Metadata } from "next";
-import { Spectral, Hanken_Grotesk } from "next/font/google";
+import "@fontsource/spectral/300.css";
+import "@fontsource/spectral/400.css";
+import "@fontsource/spectral/500.css";
+import "@fontsource/spectral/600.css";
+import "@fontsource/spectral/700.css";
+import "@fontsource/spectral/400-italic.css";
+import "@fontsource/spectral/500-italic.css";
+import "@fontsource/hanken-grotesk/400.css";
+import "@fontsource/hanken-grotesk/500.css";
+import "@fontsource/hanken-grotesk/600.css";
+import "@fontsource/hanken-grotesk/700.css";
+import "@fontsource/hanken-grotesk/800.css";
 import { Providers } from "./providers";
 import Header from "@/layout/Header";
 import Footer from "@/layout/Footer";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import "./globals.css";
-
-const spectral = Spectral({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-spectral",
-});
-
-const hanken = Hanken_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-hanken",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -33,16 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${spectral.variable} ${hanken.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>
           <Header />
           <main>{children}</main>
           <Footer />
+          <ThemeToggle />
         </Providers>
       </body>
     </html>

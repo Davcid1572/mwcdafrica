@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { haptic } from "@/lib/haptics";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "sent">("idle");
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    haptic(12);
     setStatus("submitting");
     // Wire up to your actual email/API endpoint here.
     setTimeout(function () {
@@ -20,7 +22,7 @@ export function ContactForm() {
     "block text-[13px] font-medium text-muted-foreground mb-1.5";
 
   return (
-    <div className="flex-1 min-w-[300px] bg-muted border border-border rounded-[22px] p-6 sm:p-10">
+    <div className="flex-1 min-w-[260px] bg-muted border border-border rounded-[22px] p-6 sm:p-10">
       <h2 className="font-serif font-semibold text-[24px] mb-6">
         Send us a message
       </h2>
@@ -105,7 +107,7 @@ export function ContactForm() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="mt-2 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold text-[15px] py-3.5 rounded-full transition-colors disabled:opacity-60"
+            className="mt-2 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold text-[15px] py-3.5 rounded-full transition-all active:scale-[0.98] disabled:opacity-60"
           >
             {status === "submitting" ? "Sending..." : "Send message \u2192"}
           </button>

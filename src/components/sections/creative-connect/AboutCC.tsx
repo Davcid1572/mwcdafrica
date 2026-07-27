@@ -4,7 +4,7 @@ export function AboutCC() {
       aria-labelledby="about-cc-heading"
       className="max-w-[1240px] mx-auto px-5 sm:px-10 py-14 sm:py-24 flex flex-wrap gap-8 sm:gap-18"
     >
-      <div className="flex-1 min-w-[280px]">
+      <div className="flex-1 min-w-[250px]">
         <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-3.5">
           About Creative Connect
         </p>
@@ -15,7 +15,7 @@ export function AboutCC() {
           More than a program, a living network.
         </h2>
       </div>
-      <div className="flex-1 min-w-[300px]">
+      <div className="flex-1 min-w-[260px]">
         <p className="text-[16.5px] leading-[1.65] text-muted-foreground">
           Creative Connect Africa brings together creatives, facilitators and
           communities to use art and expression as tools for wellbeing, skills

@@ -8,15 +8,15 @@ export function WorkHero() {
           Our work
         </span>
         <span className="flex-1 h-px bg-border" />
-        {/* <Link
+        <Link
           href="/"
           className="font-mono text-[12.5px] tracking-[1px] text-muted-foreground hover:text-foreground transition-colors"
         >
           &larr; Home
-        </Link> */}
+        </Link>
       </div>
 
-      <h1 className="font-serif font-medium text-[40px] sm:text-[68px] lg:text-[88px] leading-[0.98] tracking-[-0.03em] max-w-[14ch] text-balance">
+      <h1 className="font-serif font-medium text-[40px] sm:text-[68px] lg:text-[92px] xl:text-[104px] leading-[0.98] tracking-[-0.03em] max-w-[14ch] text-balance">
         Five areas, one{" "}
         <span className="italic text-primary-hover">mission.</span>
       </h1>

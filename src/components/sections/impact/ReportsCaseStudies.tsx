@@ -1,9 +1,7 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
+import { Tap } from "@/components/ui/Tap";
 
-const reports = [
-  { title: "2025 Annual Impact Report", href: "#" },
-  { title: "2024 Annual Impact Report", href: "#" },
-];
+const reports = [{ title: "2026 Annual Impact Report", status: "Coming soon" }];
 
 const caseStudies = [
   {
@@ -22,7 +20,7 @@ export function ReportsCaseStudies() {
       aria-label="Impact reports and case studies"
       className="max-w-[1240px] mx-auto px-5 sm:px-10 py-14 sm:py-24 flex flex-wrap gap-8 sm:gap-12"
     >
-      <div className="flex-1 min-w-[300px]">
+      <div className="flex-1 min-w-[260px]">
         <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-3.5">
           Impact reports
         </p>
@@ -32,22 +30,27 @@ export function ReportsCaseStudies() {
         <div className="flex flex-col gap-3">
           {reports.map(function (r) {
             return (
-              <a
+              <div
                 key={r.title}
-                href={r.href}
-                className="flex items-center justify-between bg-muted border border-border rounded-[14px] px-[22px] py-[18px] hover:border-primary transition-colors"
+                className="flex items-center justify-between bg-muted border border-dashed border-border rounded-[14px] px-[22px] py-[18px]"
               >
-                <span className="font-semibold text-[15.5px]">{r.title}</span>
-                <span className="text-accent-light font-semibold">
-                  PDF &rarr;
+                <span className="font-semibold text-[15.5px] text-muted-foreground">
+                  {r.title}
                 </span>
-              </a>
+                <span className="text-[12px] font-semibold uppercase tracking-[0.4px] text-accent-light bg-accent-light/10 px-3 py-1 rounded-full">
+                  {r.status}
+                </span>
+              </div>
             );
           })}
+          <p className="text-[13.5px] text-muted-foreground leading-[1.5]">
+            MWCDAFRICA was incorporated in 2026, our first annual report will
+            be published once our inaugural year closes.
+          </p>
         </div>
       </div>
 
-      <div className="flex-1 min-w-[300px]">
+      <div className="flex-1 min-w-[260px]">
         <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-3.5">
           Case studies
         </p>
@@ -57,17 +60,16 @@ export function ReportsCaseStudies() {
         <div className="grid grid-cols-2 gap-3.5">
           {caseStudies.map(function (cs) {
             return (
-              <a key={cs.slug} href="#" className="text-inherit no-underline">
-                <div className="relative aspect-[4/3] rounded-[14px] overflow-hidden mb-2.5">
-                  <Image
+              <Tap key={cs.slug} className="block">
+                <a href="#" className="text-inherit no-underline block">
+                  <Photo
                     src={"/images/impact/" + cs.slug + ".jpg"}
-                    alt=""
-                    fill
-                    className="object-cover object-center"
+                    alt={cs.title}
+                    className="aspect-[4/3] rounded-[14px] mb-2.5"
                   />
-                </div>
-                <div className="font-semibold text-[14.5px]">{cs.title}</div>
-              </a>
+                  <div className="font-semibold text-[14.5px]">{cs.title}</div>
+                </a>
+              </Tap>
             );
           })}
         </div>
