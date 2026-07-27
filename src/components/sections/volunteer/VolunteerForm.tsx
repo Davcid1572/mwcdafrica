@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { haptic } from "@/lib/haptics";
 
 const interestOptions = [
   "Community facilitation",
@@ -15,6 +16,7 @@ export function VolunteerForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "sent">("idle");
 
   function toggleInterest(value: string) {
+    haptic(6);
     setInterests(function (prev) {
       if (prev.includes(value)) {
         return prev.filter(function (v) {
@@ -27,6 +29,7 @@ export function VolunteerForm() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    haptic(12);
     setStatus("submitting");
     setTimeout(function () {
       setStatus("sent");
@@ -140,7 +143,7 @@ export function VolunteerForm() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="mt-1.5 bg-primary-hover hover:bg-primary-hover/90 text-primary-foreground font-semibold text-[15px] py-3.5 rounded-full transition-colors disabled:opacity-60"
+            className="mt-1.5 bg-primary hover:bg-primary-hover text-primary-foreground font-semibold text-[15px] py-3.5 rounded-full transition-all active:scale-[0.98] disabled:opacity-60"
           >
             {status === "submitting"
               ? "Submitting..."

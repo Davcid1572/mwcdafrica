@@ -1,5 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
+import { Photo } from "@/components/ui/Photo";
+import { MagicianCards } from "@/components/ui/MagicianCards";
+import { Tap } from "@/components/ui/Tap";
 
 const areas = [
   {
@@ -44,6 +46,12 @@ const areas = [
   },
 ];
 
+const digitalCards = [
+  { src: "/images/work/mica-card-1.png", alt: "MICA app home screen" },
+  { src: "/images/work/mica-card-2.png", alt: "MICA app journaling screen" },
+  { src: "/images/work/mica-card-3.png", alt: "MICA app resources screen" },
+];
+
 export function Areas() {
   return (
     <section
@@ -59,7 +67,7 @@ export function Areas() {
               (i === areas.length - 1 ? " border-b" : "")
             }
           >
-            <div className="flex-1 min-w-[300px]">
+            <div className="flex-1 min-w-[260px]">
               <span className="font-mono text-[13px] text-accent-light">
                 {area.n}
               </span>
@@ -81,24 +89,29 @@ export function Areas() {
                   );
                 })}
                 {area.link && (
-                  <Link
-                    href={area.link.href}
-                    className="text-[13px] font-semibold text-accent-light bg-accent px-1.5 py-2 rounded-2xl hover:bg-accent/90 transition-colors   "
-                  >
-                    {area.link.label} &rarr;
-                  </Link>
+                  <Tap>
+                    <Link
+                      href={area.link.href}
+                      className="inline-block text-[13px] font-semibold text-white bg-accent-light px-4 py-2 rounded-2xl hover:bg-accent-light/85 transition-colors"
+                    >
+                      {area.link.label} &rarr;
+                    </Link>
+                  </Tap>
                 )}
               </div>
             </div>
 
-            <div className="flex-1 min-w-[300px] relative aspect-[4/3] rounded-[18px] overflow-hidden">
-              <Image
+            {area.slug === "digital" ? (
+              <div className="flex-1 min-w-[260px]">
+                <MagicianCards cards={digitalCards} className="max-w-[360px]" />
+              </div>
+            ) : (
+              <Photo
                 src={"/images/work/" + area.slug + ".jpg"}
-                alt=""
-                fill
-                className="object-cover object-center"
+                alt={area.title}
+                className="flex-1 min-w-[260px] aspect-[4/3] rounded-[18px]"
               />
-            </div>
+            )}
           </div>
         );
       })}

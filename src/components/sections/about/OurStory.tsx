@@ -17,14 +17,14 @@ export function OurStory() {
       </h2>
 
       <div className="flex flex-wrap gap-10 sm:gap-16 mt-9 sm:mt-14">
-        <p className="flex-1 min-w-[280px] max-w-[420px] text-[16px] leading-[1.65] text-muted-foreground">
+        <p className="flex-1 min-w-[250px] max-w-[420px] text-[16px] leading-[1.65] text-muted-foreground">
           MWCDAFRICA began with a stubborn belief: that mental wellbeing and
-          social dignity should not be luxuries. What started as a founder's
+          social dignity should not be luxuries. What started as a founder&apos;s
           response to a gap in care has grown into a structured foundation,
           building programs, partnerships, and technology that meet people where
           they are.
         </p>
-        <p className="flex-1 min-w-[280px] max-w-[420px] text-[16px] leading-[1.65] text-muted-foreground">
+        <p className="flex-1 min-w-[250px] max-w-[420px] text-[16px] leading-[1.65] text-muted-foreground">
           Today we steward an ecosystem designed to grow: a parent foundation
           strong enough to carry new flagship initiatives without rebranding or
           starting over.

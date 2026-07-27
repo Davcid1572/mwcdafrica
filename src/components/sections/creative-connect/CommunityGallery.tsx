@@ -1,14 +1,30 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/Photo";
 
 const images = [
   {
     id: "cc-gal-1",
     alt: "A creative at work",
-    className: "col-span-2 row-span-2",
+    className: "col-span-2 row-span-2 rounded-[18px]",
+    src: "/images/creative-connect/cc-gal-1.jpg",
   },
-  { id: "cc-gal-2", alt: "A workshop in session", className: "col-span-2" },
-  { id: "cc-gal-3", alt: "Community artwork" },
-  { id: "cc-gal-4", alt: "Portrait of a community member" },
+  {
+    id: "cc-gal-2",
+    alt: "A workshop in session",
+    className: "col-span-2 rounded-[18px]",
+    src: "/images/creative-connect/cc-gal-2.jpg",
+  },
+  {
+    id: "cc-gal-3",
+    alt: "Community artwork",
+    className: "rounded-[18px]",
+    src: "/images/creative-connect/cc-gal-3.jpg",
+  },
+  {
+    id: "cc-gal-4",
+    alt: "Portrait of a community member",
+    className: "rounded-[18px]",
+    src: "/images/creative-connect/cc-gal-4.jpg",
+  },
 ];
 
 export function CommunityGallery() {
@@ -32,20 +48,12 @@ export function CommunityGallery() {
       <div className="grid grid-cols-4 auto-rows-[110px] sm:auto-rows-[170px] gap-2.5 sm:gap-4">
         {images.map(function (img) {
           return (
-            <div
+            <Photo
               key={img.id}
-              className={
-                "relative rounded-[18px] overflow-hidden " +
-                (img.className || "")
-              }
-            >
-              <Image
-                src={"/images/creative-connect/" + img.id + ".jpg"}
-                alt={img.alt}
-                fill
-                className="object-cover object-center"
-              />
-            </div>
+              src={img.src}
+              alt={img.alt}
+              className={img.className}
+            />
           );
         })}
       </div>

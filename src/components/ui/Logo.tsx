@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export function Logo() {
   return (
@@ -12,6 +12,6 @@ export function Logo() {
           Mental Wellbeing &amp; Community Development
         </span>
       </span>
-    </a>
+    </Link>
   );
 }

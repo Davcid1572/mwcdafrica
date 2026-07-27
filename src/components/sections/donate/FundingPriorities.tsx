@@ -15,7 +15,7 @@ const priorities = [
 
 export function FundingPriorities() {
   return (
-    <div className="flex-1 min-w-[300px]">
+    <div className="flex-1 min-w-[260px]">
       <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent mb-4">
         Funding priorities
       </p>

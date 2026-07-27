@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { footerColumns, socialLinks } from "@/lib/data/footer";
+import { Tap } from "@/components/ui/Tap";
 
 export default function Footer() {
   return (
@@ -10,14 +10,29 @@ export default function Footer() {
           {/* Brand column */}
           <div className="flex-1 min-w-[260px] basis-[280px]">
             <Link href="/" className="flex items-center gap-3 mb-5">
-              <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-[#3C6B54] shrink-0">
-                <Image
-                  src="/brand/logo-mark.png"
-                  alt=""
-                  width={22}
-                  height={22}
+              <svg
+                width="34"
+                height="34"
+                viewBox="0 0 96 96"
+                fill="none"
+                aria-hidden="true"
+                className="shrink-0"
+              >
+                <path
+                  d="M18 78L18 18L48 66L78 18L78 78"
+                  stroke="#F7F2EA"
+                  strokeWidth="7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-              </span>
+                <path
+                  d="M18 78L48 30L78 78"
+                  stroke="#D98A63"
+                  strokeWidth="7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               <span className="font-serif font-bold text-[19px] text-[#F7F2EA]">
                 MWCD<span className="text-[#D98A63]">AFRICA</span>
               </span>
@@ -29,14 +44,15 @@ export default function Footer() {
             <div className="flex gap-2.5">
               {socialLinks.map(function (s) {
                 return (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    aria-label={s.label}
-                    className="w-[38px] h-[38px] rounded-full border border-white/22 flex items-center justify-center text-[12px] font-semibold text-[#F7F2EA]/80 hover:bg-[#C06B45] hover:text-white transition-colors"
-                  >
-                    {s.short}
-                  </a>
+                  <Tap key={s.label} hapticPattern={8}>
+                    <a
+                      href={s.href}
+                      aria-label={s.label}
+                      className="w-[38px] h-[38px] rounded-full border border-white/22 flex items-center justify-center text-[12px] font-semibold text-[#F7F2EA]/80 hover:bg-[#C06B45] hover:text-white active:scale-95 transition-all"
+                    >
+                      {s.short}
+                    </a>
+                  </Tap>
                 );
               })}
             </div>

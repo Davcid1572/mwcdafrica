@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { navLinks } from "@/lib/data/nav";
 import { Logo } from "@/components/ui/Logo";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Tap } from "@/components/ui/Tap";
+import { haptic } from "@/lib/haptics";
 
 export default function Header() {
   const pathname = usePathname();
@@ -44,42 +45,44 @@ export default function Header() {
           {navLinks.map((item) => {
             const isActive = pathname.startsWith(item.href);
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={isActive ? "page" : undefined}
-                className={`text-[14.5px] font-medium pb-1 border-b-2 transition-colors ${
-                  isActive
-                    ? "border-accent-light text-foreground"
-                    : "border-transparent text-foreground/80 hover:border-accent-light hover:text-foreground"
-                }`}
-              >
-                {item.label}
-              </Link>
+              <Tap key={item.href} hapticPattern={6}>
+                <Link
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`inline-block text-[14.5px] font-medium pb-1 border-b-2 transition-colors active:scale-95 ${
+                    isActive
+                      ? "border-accent-light text-foreground"
+                      : "border-transparent text-foreground/80 hover:border-accent-light hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              </Tap>
             );
           })}
 
-          <ThemeToggle />
-
-          <Link
-            href="/donate"
-            className="bg-primary hover:bg-primary-hover text-primary-foreground text-[14.5px] font-semibold px-5 py-2.5 rounded-full transition-colors"
-          >
-            Donate
-          </Link>
+          <Tap>
+            <Link
+              href="/donate"
+              className="bg-primary hover:bg-primary-hover text-primary-foreground text-[14.5px] font-semibold px-5 py-2.5 rounded-full transition-colors"
+            >
+              Donate
+            </Link>
+          </Tap>
         </nav>
 
         {/* Mobile controls — visible below lg */}
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
-
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            onClick={() => setOpen((v) => !v)}
-            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            onClick={() => {
+              haptic(10);
+              setOpen((v) => !v);
+            }}
+            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-border text-foreground active:scale-90 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <span className="sr-only">Toggle menu</span>
             <span
@@ -116,7 +119,8 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`rounded-md px-3 py-2.5 text-[15px] font-medium transition-colors ${
+                  onClick={() => haptic(6)}
+                  className={`rounded-md px-3 py-2.5 text-[15px] font-medium transition-colors active:scale-[0.98] ${
                     isActive
                       ? "bg-accent/10 text-foreground"
                       : "text-foreground/80 hover:bg-accent/5 hover:text-foreground"
@@ -129,7 +133,8 @@ export default function Header() {
 
             <Link
               href="/donate"
-              className="bg-primary hover:bg-primary-hover text-primary-foreground text-[14.5px] font-semibold px-5 py-2.5 rounded-full transition-colors mt-3 text-center"
+              onClick={() => haptic(10)}
+              className="bg-primary hover:bg-primary-hover text-primary-foreground text-[14.5px] font-semibold px-5 py-2.5 rounded-full transition-colors mt-3 text-center active:scale-[0.98]"
             >
               Donate
             </Link>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Tap } from "@/components/ui/Tap";
 
 export function CCHero() {
   return (
@@ -9,28 +9,12 @@ export function CCHero() {
         alt="Creative Connect Africa community members at work"
         fill
         priority
-        className="object-cover object-center"
+        className="object-cover"
+        style={{ objectPosition: "30% center" }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/32 via-black/10 to-black/85" />
 
       <div className="relative z-10 max-w-[1240px] w-full mx-auto px-5 sm:px-10 pb-10 sm:pb-18">
-        {/* <nav
-          aria-label="Breadcrumb"
-          className="font-mono text-[12px] text-white/70 mb-5"
-        >
-          <Link href="/" className="hover:text-white transition-colors">
-            Home
-          </Link>{" "}
-          /{" "}
-          <Link
-            href="/initiatives"
-            className="hover:text-white transition-colors"
-          >
-            Initiatives
-          </Link>{" "}
-          / Creative Connect
-        </nav> */}
-
         <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-[#E7C9B6] mb-4">
           Creative Connect Africa
         </p>
@@ -46,12 +30,16 @@ export function CCHero() {
           connecting talent, mentors and opportunity across Africa.
         </p>
 
-        <a
-          href="#join"
-          className="inline-block bg-[#F7F2EA] text-[#1B2A20] font-semibold text-[15px] px-7 py-3.5 rounded-full hover:-translate-y-0.5 transition-transform"
-        >
-          Join the community &rarr;
-        </a>
+        <Tap>
+          <a
+            href="https://creativeconnect.africa"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#F7F2EA] text-[#1B2A20] font-semibold text-[15px] px-7 py-3.5 rounded-full hover:-translate-y-0.5 transition-transform"
+          >
+            Join the community &rarr;
+          </a>
+        </Tap>
       </div>
     </section>
   );

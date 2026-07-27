@@ -49,7 +49,7 @@ export function PageBanner({
       </svg>
 
       <div className="relative max-w-[1240px] mx-auto px-5 sm:px-10 pt-10 sm:pt-17 pb-11 sm:pb-18">
-        {/* <nav
+        <nav
           aria-label="Breadcrumb"
           className="font-mono text-[12px] text-muted-foreground mb-6"
         >
@@ -57,7 +57,7 @@ export function PageBanner({
             Home
           </Link>{" "}
           / {breadcrumbLabel}
-        </nav> */}
+        </nav>
 
         <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-4">
           {eyebrow}

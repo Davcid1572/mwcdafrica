@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Tap } from "@/components/ui/Tap";
 
 const ways = [
   {
@@ -19,7 +20,7 @@ export function PartnershipOpportunities() {
   return (
     <section aria-label="Ways to partner" className="bg-muted">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-10 py-14 sm:py-20 flex flex-wrap gap-8 sm:gap-12">
-        <div className="flex-1 min-w-[280px]">
+        <div className="flex-1 min-w-[250px]">
           <p className="font-mono text-[12px] tracking-[1.5px] uppercase text-accent-light mb-4.5">
             Ways to partner
           </p>
@@ -42,7 +43,7 @@ export function PartnershipOpportunities() {
           </div>
         </div>
 
-        <div className="flex-1 min-w-[300px] flex">
+        <div className="flex-1 min-w-[260px] flex">
           <div className="relative overflow-hidden bg-primary text-primary-foreground rounded-[22px] p-7 sm:p-11 flex flex-col justify-center w-full">
             <svg
               viewBox="0 0 600 600"
@@ -67,12 +68,14 @@ export function PartnershipOpportunities() {
               <p className="text-[15.5px] leading-[1.6] text-primary-foreground/78 mb-6">
                 Tell us about your organisation and where our missions meet.
               </p>
-              <Link
-                href="/contact"
-                className="inline-block bg-background text-primary font-semibold text-[15px] px-6.5 py-3.5 rounded-full"
-              >
-                Become a partner &rarr;
-              </Link>
+              <Tap>
+                <Link
+                  href="/contact"
+                  className="inline-block bg-background text-primary font-semibold text-[15px] px-6.5 py-3.5 rounded-full"
+                >
+                  Become a partner &rarr;
+                </Link>
+              </Tap>
             </div>
           </div>
         </div>
