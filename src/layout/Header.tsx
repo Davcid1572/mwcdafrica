@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { navLinks } from "@/lib/data/nav";
 import { Logo } from "@/components/ui/Logo";
 import { Tap } from "@/components/ui/Tap";
