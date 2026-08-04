@@ -1,6 +1,7 @@
 export type Person = {
   name: string;
   title: string;
+  image?: string;
 };
 
 export type GovernanceGroup = {
@@ -15,8 +16,9 @@ export const governanceGroups: GovernanceGroup[] = [
     role: "Governance & accountability",
     people: [
       {
-        name: "Trustee name",
-        title: "Chair",
+        name: "Martin Eloka",
+        title: "Secretary & Trustee",
+        image: "/images/about/martin-eloka.jpg",
       },
       {
         name: "Trustee name",
@@ -49,6 +51,20 @@ export const governanceGroups: GovernanceGroup[] = [
       {
         name: "Team member",
         title: "Programs Lead",
+      },
+    ],
+  },
+  {
+    name: "Engineering Team",
+    role: "Product development & maintenance",
+    people: [
+      {
+        name: "Team member",
+        title: "Frontend Engineer",
+      },
+      {
+        name: "Team member",
+        title: "Backend Engineer",
       },
     ],
   },

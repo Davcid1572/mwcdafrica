@@ -1,6 +1,21 @@
 import Link from "next/link";
+import {
+  FaInstagram,
+  FaXTwitter,
+  FaLinkedin,
+  FaFacebook,
+  FaTiktok,
+} from "react-icons/fa6";
 import { footerColumns, socialLinks } from "@/lib/data/footer";
 import { Tap } from "@/components/ui/Tap";
+
+const socialIcons = {
+  instagram: FaInstagram,
+  x: FaXTwitter,
+  linkedin: FaLinkedin,
+  facebook: FaFacebook,
+  tiktok: FaTiktok,
+};
 
 export default function Footer() {
   return (
@@ -43,14 +58,17 @@ export default function Footer() {
             </p>
             <div className="flex gap-2.5">
               {socialLinks.map(function (s) {
+                const Icon = socialIcons[s.icon];
                 return (
                   <Tap key={s.label} hapticPattern={8}>
                     <a
                       href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={s.label}
-                      className="w-[38px] h-[38px] rounded-full border border-white/22 flex items-center justify-center text-[12px] font-semibold text-[#F7F2EA]/80 hover:bg-[#C06B45] hover:text-white active:scale-95 transition-all"
+                      className="w-[38px] h-[38px] rounded-full border border-white/22 flex items-center justify-center text-[#F7F2EA]/80 hover:bg-[#C06B45] hover:text-white active:scale-95 transition-all"
                     >
-                      {s.short}
+                      <Icon size={15} />
                     </a>
                   </Tap>
                 );
