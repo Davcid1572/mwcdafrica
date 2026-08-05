@@ -106,12 +106,37 @@ export default function Footer() {
           })}
         </div>
 
-        <div className="border-t border-white/14 pt-[22px] flex flex-wrap gap-3 justify-between text-[13px] text-[#F7F2EA]/55">
-          <span>
-            &copy; {new Date().getFullYear()} MWCDAFRICA Foundation. All rights
+        <div className="border-t border-white/14 pt-6 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <p className="text-[13px] text-[#F7F2EA]/55">
+            © {new Date().getFullYear()} MWCDAFRICA Foundation. All rights
             reserved.
-          </span>
-          <span>Empowering minds &middot; Strengthening communities</span>
+          </p>
+
+          <div className="flex flex-wrap items-center gap-5 text-[13px]">
+            <Link
+              href="/documents/privacy-policy.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#F7F2EA]/60 hover:text-[#D98A63] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+
+            <span className="text-white/20">•</span>
+
+            <Link
+              href="/documents/terms-and-conditions.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#F7F2EA]/60 hover:text-[#D98A63] transition-colors"
+            >
+              Terms & Conditions
+            </Link>
+          </div>
+
+          <p className="text-[13px] text-[#F7F2EA]/55">
+            Empowering minds · Strengthening communities
+          </p>
         </div>
       </div>
     </footer>

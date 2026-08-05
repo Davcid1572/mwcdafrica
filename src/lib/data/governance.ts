@@ -16,13 +16,14 @@ export const governanceGroups: GovernanceGroup[] = [
     role: "Governance & accountability",
     people: [
       {
-        name: "Martin Eloka",
-        title: "Secretary & Trustee",
-        image: "/images/about/martin-eloka.jpg",
+        name: "John Eloka",
+        title: "Chairman",
+        image: "/images/about/john-eloka.jpg",
       },
       {
-        name: "Trustee name",
-        title: "Trustee",
+        name: "Martin Eloka",
+        title: "Secretary",
+        image: "/images/about/martin-eloka.jpg",
       },
     ],
   },
