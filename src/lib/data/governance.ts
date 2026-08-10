@@ -23,7 +23,7 @@ export const governanceGroups: GovernanceGroup[] = [
       {
         name: "Martin Eloka",
         title: "Secretary",
-        image: "/images/about/john-eloka.jpg",
+        image: "/images/about/John-eloka.jpg",
       },
     ],
   },
