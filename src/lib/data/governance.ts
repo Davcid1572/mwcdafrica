@@ -18,12 +18,12 @@ export const governanceGroups: GovernanceGroup[] = [
       {
         name: "John Eloka",
         title: "Chairman",
-        image: "/images/about/john-eloka.jpg",
+        image: "/images/about/martin-eloka.jpg",
       },
       {
         name: "Martin Eloka",
         title: "Secretary",
-        image: "/images/about/martin-eloka.jpg",
+        image: "/images/about/john-eloka.jpg",
       },
     ],
   },
